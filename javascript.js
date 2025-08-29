@@ -181,7 +181,7 @@ function eval(symbol){
     curr = final.toString();
     console.log(curr + " equalz")
     num2 = "";
-    checkNegative();
+    negative2 = false;
     answer.textContent = "";
     tfDot2 = false;
     tfSymbol = false;
