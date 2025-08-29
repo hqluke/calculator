@@ -180,6 +180,7 @@ function eval(symbol){
     curr = final.toString();
     console.log(curr + " equalz")
     num2 = "";
+    checkNegative();
     answer.textContent = "";
     tfDot2 = false;
     tfSymbol = false;
@@ -193,19 +194,14 @@ function negativeNum(){
     let temp = 0;
     let tempS = ""
     if(curr == ""){
-        if(currNum == false && continuous == true){
-            num1 = -num1;
-            answer.textContent = num1;
-        }
-        else if(currNum == false && continuous == false){
+         if(currNum == false && continuous == false){
             answer.textContent = "-"
         }
         else if(currNum == true){
             temp = "-"
             curr += temp;
             answer.textContent = `${num1} ${symbol} ${temp}`;
-        }
-        else{}        
+        }       
     }
     else{
         if(currNum == false && continuous == true){
@@ -224,7 +220,6 @@ function negativeNum(){
             curr = temp.toString();
             answer.textContent = `${num1} ${symbol} ${temp}`;
         }
-        else{}
     }
 }
 
@@ -239,7 +234,8 @@ function clear(){
     currNum = false;
     tfSymbol = false;
     continuous = false;
-
+    negative1 = false;
+    negative2 = false;
 }
 
 function displayDot(dot){
