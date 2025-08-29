@@ -4,6 +4,8 @@ let num2 = 0;
 let curr = "";
 let symbol = "";
 let tfSymbol = false;
+let tfNum = false;
+let tfDot = false;
 
 
 document.querySelector('.numbers').addEventListener('click', function(e) {
@@ -13,52 +15,52 @@ document.querySelector('.numbers').addEventListener('click', function(e) {
             case 'zero':
                 char = getText(buttonId);
                 curr += char;
-                show(char);
+                display(char);
                 break;
             case 'one':
                 char = getText(buttonId);
                 curr += char;
-                show(char);
+                display(char);
                 break;                
             case 'two':
                 char = getText(buttonId);
                 curr += char;
-                show(char);
+                display(char);
                 break;
             case 'three':
                 char = getText(buttonId);
                 curr += char;
-                show(char);
+                display(char);
                 break;
             case 'four':
                 char = getText(buttonId);
                 curr += char;
-                show(char);;
+                display(char);;
                 break;
             case 'five':
                 char = getText(buttonId);
                 curr += char;
-                show(char);
+                display(char);
                 break;
             case 'six':
                 char = getText(buttonId);
                 curr += char;
-                show(char);
+                display(char);
                 break;
             case 'seven':
                 char = getText(buttonId);
                 curr += char;
-                show(char);
+                display(char);
                 break;
             case 'eight':
                 char = getText(buttonId);
                 curr += char;
-                show(char);
+                display(char);
                 break;
             case 'nine':
                 char = getText(buttonId);
                 curr += char;
-                show(char);
+                display(char);
                 break;
             case 'AC':
                 clear();
@@ -70,31 +72,36 @@ document.querySelector('.numbers').addEventListener('click', function(e) {
                 num();
                 symbol = "%";
                 char = getText(buttonId);
-                show(char);
+                displayOperator(char);
+                tfSymbol = true;
                 break;
             case 'divide':
                 num();
                 symbol = "/";
                 char = getText(buttonId);
-                show(char);
+                displayOperator(char);
+                tfSymbol = true;
                 break;
             case 'x':
                 num();
                 symbol = "x";
                 char = getText(buttonId);
-                show(char);
+                displayOperator(char);
+                tfSymbol = true;
                 break;
             case 'minus':
                 num();
                 symbol = "-";
                 char = getText(buttonId);
-                show(char);
+                displayOperator(char);
+                tfSymbol = true;
                 break;
             case 'plus':
                 num();
                 symbol = "+";
                 char = getText(buttonId);
-                show(char);
+                displayOperator(char);
+                tfSymbol = true;
                 break;
             case 'equal':
                 num();
@@ -102,8 +109,8 @@ document.querySelector('.numbers').addEventListener('click', function(e) {
                 break;
             case 'dot':
                 char = getText(buttonId);
-                curr += char;
-                show(char);
+                displayDot(char)
+                tfDot = true;
                 break;                         
         }
         console.log(curr)
@@ -119,7 +126,12 @@ function getText(buttonId) {
 
 function num(){
     if(!num1){
+        if(tfDot == true){
+            num1 = parseFloat(answer.textContent);
+            console.log(num1);
+        } else{
         num1 = parseFloat(curr);
+        }
         curr = "";
     }else{
         num2 = parseFloat(curr);
@@ -130,7 +142,7 @@ function num(){
 }
 
 function eval(symbol){
-    let final = 0;
+    let final = "Error";
     switch(symbol){
         case"%":
             final = num1 % num2;
@@ -148,11 +160,17 @@ function eval(symbol){
             final = num1 + num2;
             break;        
     }
+        if(Number.isNaN(final)){
+        final = num1;
+    }
     symbol = "";
     num1 = final;
     num2 = "";
     answer.textContent = "";
-    show(final);
+    tfDot = false;
+    tfSymbol = false;
+    display(final);
+    tfNum = true;
 }
 
 function negativeNum(num){
@@ -169,19 +187,37 @@ function clear(){
     curr = "";
     symbol = "";
     answer.textContent = "";
+    tfDot = false;
+    tfNum = false;
+    tfSymbol = false;
 }
 
-function show(any){
-    if(!num2){
+function displayDot(dot){
+    if (tfDot == false){
+        answer.textContent += dot;
+    }
+}
+
+function display(num){
+    if(tfNum == false){
+        answer.textContent += num;
+    } else{
+        answer.textContent = num;
+        num1 = "";
+        curr = num;
+        tfNum = false;
+    }
+}
+
+function displayOperator(any){
+    if(tfSymbol == false){
         if(any == "%" || any == "/" || any == "x" || any == "-" || any == "+"){
             answer.textContent += ` ${any} `;
-        } else{
-            answer.textContent += any;
+            tfNum = false;
         }
     }
 }
 
 
-// symbol check is only good for one rn need to add a funciton to check dat hoe use tfSymbol
 // need negative function
-// after = and you press da number again it should clear the answer text and num1
+// i think i need the status for num1 and num2 
