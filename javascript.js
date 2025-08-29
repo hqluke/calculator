@@ -152,6 +152,7 @@ function num(){
 function eval(symbol){
     let final = "Error";
     if(continuous == true && num2 == ""){
+        answer.textContent = "";
         display(num1);
         return;
     }
@@ -178,7 +179,6 @@ function eval(symbol){
     }
     symbol = "";
     num1 = final;
-    curr = final.toString();
     console.log(curr + " equalz")
     num2 = "";
     negative2 = false;
@@ -196,6 +196,10 @@ function negativeNum(){
     let temp = 0;
     let tempS = ""
     if(curr == ""){
+        if(currNum == false && continuous == true){
+            num1 = -num1;
+            answer.textContent = num1;
+        }
          if(currNum == false && continuous == false){
             answer.textContent = "-"
         }
@@ -210,7 +214,7 @@ function negativeNum(){
             num1 = -num1;
             answer.textContent = num1;
         }
-        else if(currNum == false && continuous == false){
+        if(currNum == false && continuous == false){
             temp = parseFloat(curr)
             temp = -temp;
             curr = temp.toString();
