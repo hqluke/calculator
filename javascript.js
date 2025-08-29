@@ -10,8 +10,9 @@ let tfDot1 = false;
 let tfDot2 = false;
 let negative1 = false;
 let negative2 = false;
+let restartNums = false; // literally used only to keep if continuos/not brah these var names are cheeks
 
-
+//who made dis 100 line long switch statement?! couldn't have been me naaah
 document.querySelector('.numbers').addEventListener('click', function(e) {
         const buttonId = e.target.id;
         let char = "";
@@ -187,6 +188,7 @@ function eval(symbol){
     display(final);
     currNum = false;
     continuous = true;
+    restartNums = true;
     }
 }
 
@@ -253,10 +255,15 @@ function displayDot(dot){
 
 function display(num){
     if(continuous == true && currNum == false && tfDot1 == false){
-        answer.textContent = num;
-        num1 = "";
-        curr = num;
-        currNum = false;        
+        if(restartNums == true){
+            restartNums = false;
+            answer.textContent = num;
+            num1 = "";
+            curr = num;
+            currNum = false;
+        } else{
+            answer.textContent += num;
+        }       
     } else{
         answer.textContent += num;
     }

@@ -5,11 +5,12 @@ body{
     justify-content: center;
     min-height: 100vh;
     margin: 0;
+    min-width: 80vw;
+    margin: 0 auto;
+    overflow: hidden;
 }
 
-div{
-     border: 2px groove black;
-}
+
 
 button{
     display: flex;
@@ -18,7 +19,27 @@ button{
     justify-content: center;
     flex-shrink: 0;
     font-size: 24px;
+    border: 2px groove black;
+    
 }
+
+.numbers button{
+    background-color: rgb(253, 208, 208);
+}
+
+
+#negative, #mod, #divide, #x, #minus, #plus{
+    background-color: rgb(191, 189, 252);
+}
+
+#equal{
+    background-color: rgb(245, 222, 179);
+}
+
+#AC{
+    background-color: rgb(255, 128, 128);
+}
+
 
 #zero{
     flex-basis: 50%;
@@ -28,6 +49,7 @@ button{
     display: flex;
     flex-direction: column;
     width: 20vw;
+    min-width: 20vw;
     height: 60vh;
 
 }
@@ -38,14 +60,17 @@ button{
     height: 94px;
     align-items: flex-end;
     margin: 0;
+    font-size: 48px;
+    padding-bottom: 8px;
+    padding-right: 10px;
+    border: 4px groove black;
+    border-bottom: 0px;
+    background-color: rgb(165, 165, 165);
+    color: white;
+    text-shadow: 2px 2px 2px black;
 }
 
-.answer p{
-        justify-content: flex-end;
-        align-items: flex-end;
-        font-size: 48px;
-        margin: 0;
-}
+
 
 .numbers{
     display: flex;
@@ -54,12 +79,16 @@ button{
     flex-wrap: wrap;
     align-items: stretch;
     flex-grow: 1;
+    border: 2px groove black;
+    
 }
+
 
 .five{
     display: flex;
         flex-grow: 1;
 }
+
 
 .four{
     display: flex;
