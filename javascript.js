@@ -150,6 +150,11 @@ function num(){
 
 function eval(symbol){
     let final = "Error";
+    if(continuous == true && num2 == ""){
+        display(num1);
+        return;
+    }
+    else{
     switch(symbol){
         case"%":
             final = num1 % num2;
@@ -181,6 +186,7 @@ function eval(symbol){
     display(final);
     currNum = false;
     continuous = true;
+    }
 }
 
 function negativeNum(){
